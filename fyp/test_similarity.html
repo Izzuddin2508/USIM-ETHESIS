@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Similarity Checker</title>
+</head>
+<body>
+    <h2>Test Thesis Similarity Checker</h2>
+    <form id="testForm">
+        <label for="testFile">Select a file to test:</label><br>
+        <input type="file" id="testFile" name="file" accept=".pdf,.doc,.docx,.txt"><br><br>
+        <button type="button" onclick="testSimilarity()">Check Similarity</button>
+    </form>
+    
+    <div id="results" style="margin-top: 20px;"></div>
+    
+    <script>
+        async function testSimilarity() {
+            const fileInput = document.getElementById('testFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const response = await fetch('similarity_checker.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('results').innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
