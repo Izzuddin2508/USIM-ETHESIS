@@ -1,5 +1,0 @@
-1. Register only for admin , not available at student page
-2. Add student under supervisor process completely handle by admin
-2. Similarity Checker
-3. Auto classification/ auto tagging
-4. Thesis library , collection of the previous student like alumni thesis (Like USIMN Repository) . For references to current student 
