@@ -101,99 +101,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             align-items: center;
             justify-content: center;
             padding: 20px;
+            background: #f5f5f5;
         }
 
         .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 900px;
-            position: relative;
-            display: flex;
-            min-height: 600px;
+            max-width: 400px;
         }
 
         .image-section {
-            flex: 1;
-            background: linear-gradient(135deg, rgba(0, 31, 63, 0.8), rgba(0, 51, 102, 0.8)), url('https://www.usim.edu.my/wp-content/uploads/2021/09/USIM-1116x558-1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .image-overlay {
-            background: rgba(0, 31, 63, 0.3);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .image-overlay h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .image-overlay p {
-            font-size: 16px;
-            line-height: 1.6;
-            opacity: 0.95;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            display: none;
         }
 
         .form-side {
-            flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .header {
-            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            background: #2a5298;
             color: white;
             padding: 30px 20px;
             text-align: center;
+            border-radius: 12px 12px 0 0;
         }
 
         .logo {
-            width: 80px;
+            width: 70px;
             height: auto;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            margin: 0 auto 15px;
+            border-radius: 8px;
             background: white;
-            padding: 8px;
+            padding: 6px;
+            display: block;
         }
 
         .header h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             margin-bottom: 5px;
         }
 
         .header p {
             opacity: 0.9;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .form-container {
-            padding: 30px;
+            padding: 25px;
         }
 
         .toggle-buttons {
             display: flex;
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 4px;
-            margin-bottom: 25px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 3px;
+            margin-bottom: 20px;
             position: relative;
         }
 
@@ -201,14 +167,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             flex: 1;
             background: transparent;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 500;
-            color: #6c757d;
+            color: #666;
             transition: all 0.3s ease;
             position: relative;
             z-index: 2;
+            font-size: 14px;
         }
 
         .toggle-btn.active {
@@ -217,12 +184,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .toggle-slider {
             position: absolute;
-            top: 4px;
-            left: 4px;
-            width: calc(50% - 4px);
-            height: calc(100% - 8px);
-            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
-            border-radius: 8px;
+            top: 3px;
+            left: 3px;
+            width: calc(50% - 3px);
+            height: calc(100% - 6px);
+            background: #2a5298;
+            border-radius: 6px;
             transition: transform 0.3s ease;
             z-index: 1;
         }
@@ -241,185 +208,111 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             color: #333;
             font-weight: 500;
-            font-size: 14px;
-        }
-
-        .input-wrapper {
-            position: relative;
+            font-size: 13px;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 14px;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
+            transition: border-color 0.3s ease;
         }
 
         .form-control:focus {
             outline: none;
-            border-color: #001f3f;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+            border-color: #2a5298;
         }
 
         .btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            padding: 12px;
+            background: #2a5298;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
+            transition: background 0.3s ease;
+            margin-top: 8px;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 31, 63, 0.3);
-        }
-
-        .btn:active {
-            transform: translateY(0);
+            background: #1e3c72;
         }
 
         .info-text {
             font-size: 12px;
-            color: #6c757d;
-            margin-top: 8px;
-            padding: 8px 12px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            border-left: 3px solid #007bff;
+            color: #666;
+            margin-top: 6px;
+            padding: 8px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            border-left: 2px solid #2a5298;
         }
 
         .admin-link {
             text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
         }
 
         .admin-link a {
-            color: #001f3f;
+            color: #2a5298;
             text-decoration: none;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            font-size: 13px;
+            transition: color 0.3s ease;
         }
 
         .admin-link a:hover {
-            background: #f8f9fa;
-            color: #003366;
+            color: #1e3c72;
         }
 
-        .footer {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            color: #6c757d;
-            font-size: 12px;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #28a745;
-        }
-
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #dc3545;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                max-width: 400px;
-            }
-            
-            .image-section {
-                min-height: 200px;
-                padding: 20px;
-            }
-            
-            .image-overlay h2 {
-                font-size: 22px;
-            }
-            
-            .image-overlay p {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .form-container {
-                padding: 20px;
-            }
-            
-            .header {
-                padding: 25px 20px;
-            }
-            
-            .header h1 {
-                font-size: 20px;
-            }
-            
-            .image-section {
-                min-height: 150px;
-                padding: 15px;
-            }
-        }
-
-        /* Loading animation */
         .loading {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,.3);
             border-radius: 50%;
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
+            margin-right: 6px;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 8px;
+            }
+
+            .header {
+                padding: 20px;
+                border-radius: 8px 8px 0 0;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
         }
     </style>
 </head>

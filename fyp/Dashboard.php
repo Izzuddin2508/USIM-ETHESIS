@@ -1122,28 +1122,28 @@ if (mysqli_num_rows($result) > 0) {
 
                     <!-- Progress Overview Cards -->
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                        <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <div class="card">
                             <div class="card-body" style="text-align: center; padding: 20px;">
-                                <h3 style="margin: 0; font-size: 2em;"><?php echo $total_submissions; ?></h3>
-                                <p style="margin: 5px 0 0 0;">📄 Total Submissions</p>
+                                <h3 style="margin: 0; font-size: 2em; color: #2a5298;"><?php echo $total_submissions; ?></h3>
+                                <p style="margin: 8px 0 0 0; color: #666;">📄 Total Submissions</p>
                             </div>
                         </div>
-                        <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                        <div class="card">
                             <div class="card-body" style="text-align: center; padding: 20px;">
-                                <h3 style="margin: 0; font-size: 2em;"><?php echo $status_counts['approved']; ?></h3>
-                                <p style="margin: 5px 0 0 0;">✅ Approved</p>
+                                <h3 style="margin: 0; font-size: 2em; color: #28a745;"><?php echo $status_counts['approved']; ?></h3>
+                                <p style="margin: 8px 0 0 0; color: #666;">✅ Approved</p>
                             </div>
                         </div>
-                        <div class="card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                        <div class="card">
                             <div class="card-body" style="text-align: center; padding: 20px;">
-                                <h3 style="margin: 0; font-size: 2em;"><?php echo $status_counts['revision_required']; ?></h3>
-                                <p style="margin: 5px 0 0 0;">📝 Revisions</p>
+                                <h3 style="margin: 0; font-size: 2em; color: #17a2b8;"><?php echo $status_counts['revision_required']; ?></h3>
+                                <p style="margin: 8px 0 0 0; color: #666;">📝 Revisions</p>
                             </div>
                         </div>
-                        <div class="card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">
+                        <div class="card">
                             <div class="card-body" style="text-align: center; padding: 20px;">
-                                <h3 style="margin: 0; font-size: 2em;"><?php echo $status_counts['pending']; ?></h3>
-                                <p style="margin: 5px 0 0 0;">⏳ Pending</p>
+                                <h3 style="margin: 0; font-size: 2em; color: #ffc107;"><?php echo $status_counts['pending']; ?></h3>
+                                <p style="margin: 8px 0 0 0; color: #666;">⏳ Pending</p>
                             </div>
                         </div>
                     </div>
@@ -1263,27 +1263,12 @@ if (mysqli_num_rows($result) > 0) {
                                                     </p>
                                                 </div>
                                                 <div>
-                                                    <?php if (!empty($submission['reviewer_remarks'])): ?>
-                                                        <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 13px;">
-                                                            <strong>💬 Feedback:</strong><br>
-                                                            <?php echo nl2br(htmlspecialchars($submission['reviewer_remarks'])); ?>
-                                                        </div>
-                                                    <?php elseif (!empty($submission['thesis_remark'])): ?>
-                                                        <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 13px;">
-                                                            <strong>📝 Notes:</strong><br>
-                                                            <?php echo htmlspecialchars($submission['thesis_remark']); ?>
-                                                        </div>
-                                                    <?php else: ?>
-                                                        <div style="color: #999; font-style: italic;">No comments available</div>
-                                                    <?php endif; ?>
+                                                    <a href="<?php echo htmlspecialchars($submission['thesis_path']); ?>" 
+                                                       target="_blank" class="btn" 
+                                                       style="padding: 5px 10px; font-size: 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+                                                        📄 View Document
+                                                    </a>
                                                 </div>
-                                            </div>
-                                            <div style="margin-top: 10px;">
-                                                <a href="<?php echo htmlspecialchars($submission['thesis_path']); ?>" 
-                                                   target="_blank" class="btn" 
-                                                   style="padding: 5px 10px; font-size: 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">
-                                                    📄 View Document
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -1652,7 +1637,7 @@ if (mysqli_num_rows($result) > 0) {
                                                             📖 View Thesis Document
                                                         </a>
                                                     </p>
-                                                    <p><strong>� Status:</strong> 
+                                                    <p><strong>⏳ Status:</strong> 
                                                         <span class="badge status-pending">Pending Review</span>
                                                     </p>
                                                 </div>
@@ -2382,6 +2367,7 @@ if (mysqli_num_rows($result) > 0) {
         let canSubmit = false;
 
         function handleFileChange() {
+            console.log('handleFileChange() function called');
             // Reset similarity check when file changes
             similarityChecked = false;
             canSubmit = false;
@@ -2392,8 +2378,12 @@ if (mysqli_num_rows($result) > 0) {
             
             // Automatically check similarity when file is selected
             const fileInput = document.getElementById('thesis_file');
+            console.log('File input found:', fileInput);
+            console.log('Files selected:', fileInput.files.length);
             if (fileInput.files.length > 0) {
+                console.log('File name:', fileInput.files[0].name);
                 setTimeout(() => {
+                    console.log('Calling checkSimilarity() after delay');
                     checkSimilarity();
                 }, 500); // Small delay to ensure file is properly loaded
             }
@@ -2403,7 +2393,11 @@ if (mysqli_num_rows($result) > 0) {
             const fileInput = document.getElementById('thesis_file');
             const file = fileInput.files[0];
             
+            console.log('checkSimilarity() called');
+            console.log('File selected:', file ? file.name : 'None');
+            
             if (!file) {
+                console.log('No file selected');
                 document.getElementById('submitHint').textContent = 'Please select a file first';
                 document.getElementById('submitHint').style.color = 'red';
                 return;
@@ -2419,20 +2413,26 @@ if (mysqli_num_rows($result) > 0) {
             const formData = new FormData();
             formData.append('file', file);
 
+            console.log('Sending file to similarity_checker.php...');
+
             try {
                 const response = await fetch('similarity_checker.php', {
                     method: 'POST',
                     body: formData
                 });
 
+                console.log('Response received. Status:', response.status);
+                
                 const result = await response.json();
+                
+                console.log('Similarity API Response:', result);
 
                 if (response.ok) {
+                    console.log('Response OK, displaying results');
                     displaySimilarityResults(result);
                     similarityChecked = true;
-                    canSubmit = true; // Always allow submission now
+                    canSubmit = true;
                     
-                    // Always enable submit button
                     document.getElementById('submitBtn').disabled = false;
                     document.getElementById('submitHint').textContent = 'Similarity check complete - Ready to submit!';
                     document.getElementById('submitHint').style.color = 'green';
@@ -2440,13 +2440,11 @@ if (mysqli_num_rows($result) > 0) {
                     throw new Error(result.error || 'Failed to check similarity');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                // Even if similarity check fails, allow submission
+                console.error('Error during similarity check:', error);
                 document.getElementById('submitBtn').disabled = false;
                 document.getElementById('submitHint').textContent = 'Similarity check failed, but you can still submit';
                 document.getElementById('submitHint').style.color = 'orange';
                 
-                // Show error message
                 const resultsDiv = document.getElementById('similarityResults');
                 const contentDiv = document.getElementById('similarityContent');
                 contentDiv.innerHTML = `
@@ -2462,28 +2460,141 @@ if (mysqli_num_rows($result) > 0) {
             }
         }
 
+        let similarityResult = null;
+
         function displaySimilarityResults(result) {
             const resultsDiv = document.getElementById('similarityResults');
             const contentDiv = document.getElementById('similarityContent');
             
+            // Store result globally for report generation
+            similarityResult = result;
+            
+            // Extract values with fallbacks
+            const message = result.message || '✅ Similarity check completed!';
+            const similarity = (result.max_similarity !== undefined && result.max_similarity !== null) ? result.max_similarity : 0;
+            const hasError = result.error ? true : false;
+            const matchesList = result.similar_files_list || [];
+            
             // Always use success styling since we always allow submission
-            let bgColor = '#d4edda';
-            let borderColor = '#c3e6cb';
-            let textColor = '#155724';
+            let bgColor = hasError ? '#fff3cd' : '#d4edda';
+            let borderColor = hasError ? '#ffeaa7' : '#c3e6cb';
+            let textColor = hasError ? '#856404' : '#155724';
             
             let html = `
                 <div style="background: ${bgColor}; border: 1px solid ${borderColor}; padding: 15px; border-radius: 5px; color: ${textColor};">
-                    <h5 style="margin-bottom: 10px;">${result.message}</h5>
-                    <p><strong>Similarity:</strong> ${result.max_similarity}%</p>
+                    <h5 style="margin-bottom: 10px;">${message}</h5>
+            `;
+            
+            // Display list of all matching documents if any found
+            if (matchesList && matchesList.length > 0) {
+                html += `
+                    <div style="margin-top: 15px; margin-bottom: 15px;">
+                        <h6 style="color: #2a5298; margin-bottom: 10px; font-weight: 600;">📋 Matching Documents:</h6>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                            <thead>
+                                <tr style="background: #f0f0f0; border-bottom: 2px solid #dee2e6;">
+                                    <th style="padding: 10px; text-align: left; color: #495057; font-weight: 600;">Document Name</th>
+                                    <th style="padding: 10px; text-align: center; color: #495057; font-weight: 600; width: 120px;">Similarity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                // Add each matching document as a table row
+                matchesList.forEach((match, index) => {
+                    const similarity_pct = match.similarity;
+                    let rowBgColor = index % 2 === 0 ? '#ffffff' : '#f9f9f9';
                     
+                    // Color code based on similarity percentage
+                    let similarityColor = '#28a745'; // Green for low similarity
+                    if (similarity_pct >= 50) similarityColor = '#ff9800'; // Orange for medium
+                    if (similarity_pct >= 75) similarityColor = '#f44336'; // Red for high
+                    
+                    html += `
+                        <tr style="background: ${rowBgColor}; border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 10px; color: #495057;">${match.filename}</td>
+                            <td style="padding: 10px; text-align: center;">
+                                <span style="background: ${similarityColor}; color: white; padding: 5px 10px; border-radius: 15px; font-weight: 600; font-size: 13px;">
+                                    ${similarity_pct}%
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            html += `
                     <div style="margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.3); border-radius: 3px;">
                         <strong>✅ Ready to submit:</strong> You can proceed with your thesis submission.
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <button type="button" onclick="generateSimilarityReport()" style="
+                            background: #2a5298;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-weight: 500;
+                        ">
+                            📄 View Report
+                        </button>
                     </div>
                 </div>
             `;
             
             contentDiv.innerHTML = html;
             resultsDiv.style.display = 'block';
+        }
+
+        function generateSimilarityReport() {
+            if (!similarityResult) {
+                alert('No similarity data available. Please run similarity check again.');
+                return;
+            }
+
+            const fileInput = document.getElementById('thesis_file');
+            const uploadedFilename = fileInput.files[0] ? fileInput.files[0].name : 'Unknown';
+
+            // Prepare report data with all matching documents
+            const reportData = {
+                uploaded_filename: uploadedFilename,
+                similar_files_list: similarityResult.similar_files_list || []
+            };
+
+            // Send to backend to generate PDF
+            fetch('http://localhost:5000/api/generate_report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reportData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to generate report');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                // Create blob URL and open in new tab
+                const blobUrl = window.URL.createObjectURL(blob);
+                window.open(blobUrl, '_blank');
+                
+                // Clean up the URL after a delay
+                setTimeout(() => window.URL.revokeObjectURL(blobUrl), 100);
+            })
+            .catch(error => {
+                console.error('Error generating report:', error);
+                alert('Error generating report. Please try again.');
+            });
         }
 
         // Prevent form submission if similarity not checked

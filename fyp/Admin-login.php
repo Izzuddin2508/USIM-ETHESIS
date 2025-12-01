@@ -43,268 +43,160 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             align-items: center;
             justify-content: center;
             padding: 20px;
+            background: #f5f5f5;
         }
 
         .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 900px;
-            position: relative;
-            display: flex;
-            min-height: 600px;
+            max-width: 400px;
         }
 
         .image-section {
-            flex: 1;
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.8), rgba(200, 35, 51, 0.8)), url('https://www.usim.edu.my/wp-content/uploads/2021/09/USIM-1116x558-1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .image-overlay {
-            background: rgba(220, 53, 69, 0.3);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .image-overlay h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .image-overlay p {
-            font-size: 16px;
-            line-height: 1.6;
-            opacity: 0.95;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            display: none;
         }
 
         .form-side {
-            flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .header {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            background: #dc3545;
             color: white;
             padding: 30px 20px;
             text-align: center;
+            border-radius: 12px 12px 0 0;
         }
 
         .logo {
-            width: 80px;
+            width: 70px;
             height: auto;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            margin: 0 auto 15px;
+            border-radius: 8px;
             background: white;
-            padding: 8px;
+            padding: 6px;
+            display: block;
         }
 
         .header h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             margin-bottom: 5px;
         }
 
         .header p {
             opacity: 0.9;
-            font-size: 14px;
-        }
-
-        .admin-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
         }
 
         .form-container {
-            padding: 30px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 25px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             color: #333;
             font-weight: 500;
-            font-size: 14px;
-        }
-
-        .input-wrapper {
-            position: relative;
+            font-size: 13px;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 14px;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
+            transition: border-color 0.3s ease;
         }
 
         .form-control:focus {
             outline: none;
             border-color: #dc3545;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
         }
 
         .btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            padding: 12px;
+            background: #dc3545;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
+            transition: background 0.3s ease;
+            margin-top: 8px;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.3);
+            background: #c82333;
         }
 
-        .btn:active {
-            transform: translateY(0);
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 2px solid #dc3545;
+            font-size: 13px;
         }
 
         .back-link {
             text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
         }
 
         .back-link a {
             color: #dc3545;
             text-decoration: none;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            font-size: 13px;
+            transition: color 0.3s ease;
         }
 
         .back-link a:hover {
-            background: #f8f9fa;
             color: #c82333;
         }
 
-        .footer {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            color: #6c757d;
-            font-size: 12px;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #dc3545;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                max-width: 400px;
-            }
-            
-            .image-section {
-                min-height: 200px;
-                padding: 20px;
-            }
-            
-            .image-overlay h2 {
-                font-size: 22px;
-            }
-            
-            .image-overlay p {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .form-container {
-                padding: 20px;
-            }
-            
-            .header {
-                padding: 25px 20px;
-            }
-            
-            .header h1 {
-                font-size: 20px;
-            }
-            
-            .image-section {
-                min-height: 150px;
-                padding: 15px;
-            }
-        }
-
-        /* Loading animation */
         .loading {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,.3);
             border-radius: 50%;
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
+            margin-right: 6px;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 8px;
+            }
+
+            .header {
+                padding: 20px;
+                border-radius: 8px 8px 0 0;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
